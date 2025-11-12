@@ -3,32 +3,30 @@ library(RColorBrewer)
 setwd("/Users/polinalemenkova/Documents/R/02_Boxplot")
 
 df <- read_csv("Table_export_quantity.csv")
-head(df)
 #head(df)
-# Top Left: Set a unique color with fill, colour, and alpha
-ggplot(df, aes(x=Item, y=Value)) +
-    geom_boxplot(color="red", fill="orange", alpha=0.2)
 
 # Boxplots Grouping by 'category' using fill  for box plots and bar plots
-ggplot(df, aes(Item, Value, group = Item, fill = Item)) +
-    geom_boxplot(alpha=0.2) +
-    scale_color_brewer(palette = "Set1")
+p <- ggplot(df, aes(Item, Value, group = Item, fill = Item)) +
+    geom_boxplot(alpha=0.6, position = "dodge2",
+        box.linewidth = 0.1, median.colour = "red",
+        median.linewidth = 0.3,
+        notch = F, outlier.colour="red", outlier.shape=8, outlier.alpha = 0.5,
+        staple.linewidth = 0.3) +
+    scale_y_continuous(
+        name = "Value (in 1000 tons)",
+        labels = function(y) y / 1000
+        ) +
+    labs(title = "Export of major forestry products from Italy (quantity in 1000 t), 1961-2023. Data source: FAO",
+        x = "Forestry product categories") +
+    theme(
+        legend.position = "bottom",
+        legend.text = element_text(size = 10),
+        axis.text.x = element_text(angle = 15, hjust = 1))
+p
+ggsave("Fig_export_boxplots.jpg", plot = p, dpi = 300,
+    width = 30, height = 25, units = "cm")
 
-ggplot(df, aes(x=Item, y=Value)) +
-    stat_boxplot(coef = 3.5, alpha=0.2, aes(colour = Item)) +
-    scale_fill_brewer(palette = "Set3") +
-    labs(title = "Distribution of agricultural production in India (2000-2023): median, quartiles and outliers",
-     x = "Products",
-     y = "Value (kg/ha)")
-
-ggplot(df, aes(Item, Value, fill = Item)) +
-    geom_boxplot() +
-    scale_fill_brewer(palette = "Set3") +
-    labs(title = "Distribution of agricultural production in India (2000-2023) in kg/ha: median, quartiles and outliers",
-       x = "Products",
-       y = "Value (kg/ha)") +
-    theme_gray()
-#    theme_linedraw()
-#    theme_light()
-#   theme_classic()
+#  theme_linedraw()
+#  theme_light()
+#  theme_classic()
 #  theme_minimal() theme_classic()
