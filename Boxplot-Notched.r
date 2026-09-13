@@ -1,3 +1,15 @@
+# ============================================================================
+# Notched box-and-whisker plot of Mariana Trench depths (R, ggpubr).
+# This produced Figure 6 in the peer-reviewed article:
+#   Lemenkova, P. (2019). Statistical Analysis of the Mariana Trench
+#   Geomorphology Using R Programming Language.
+#   Geodesy and Cartography, 45(2), 57-84.
+#   DOI: https://doi.org/10.3846/gac.2019.3785
+#   figshare: https://doi.org/10.6084/m9.figshare.9762860
+#   HAL: https://hal.science/hal-02277500  Zenodo: https://zenodo.org/record/3385005
+# Author: Polina Lemenkova | ORCID: 0000-0002-5759-1089
+# ============================================================================
+
 # BoxPlot (or WhiskerPlot) using ggboxplot // используем не обычную встроенную в R Basic Graphics функцию boxplot, а ggboxplot (более функциональную, advanced). Тут можно менять палитру, настраивать оси и наводить красоту. В обычном boxplot функции красоты очень ограниченны. 
 
 # ЧАСТЬ 1: делаем data.frame
